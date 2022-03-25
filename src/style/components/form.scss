@@ -1,0 +1,50 @@
+.form {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: left;
+
+  &__label {
+    width: 100%;
+    flex-wrap: nowrap;
+
+    &:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  }
+
+  &__span {
+    margin-right: 16px;
+    font-size: 13px;
+    font-family: Bahnschrift;
+    text-transform: uppercase;
+    color: $second-color;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 8px 16px;
+    outline: none;
+    border: 1px solid $main-color;
+    transition: border-color 0.5s;
+
+    &:hover {
+      border-color: $second-color;
+    }
+  }
+
+  &__button {
+    color: $main-color;
+    border: 1px solid $main-color;
+    padding: 8px 32px;
+    background-color: transparent;
+    cursor: pointer;
+    transition: color 0.5s, border-color 0.5s;
+
+    &:hover {
+      color: $second-color;
+      border-color: $second-color;
+    }
+  }
+}
