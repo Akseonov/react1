@@ -1,8 +1,8 @@
 import { createStore } from 'redux';
-import { profileReducer } from "./reducers/profileReducer";
 import { composeWithDevTools } from 'redux-devtools-extension';
+import rootReducer from "./rootReducer";
 
 export const store = createStore(
-    profileReducer,
+    rootReducer,
     composeWithDevTools(),
 );

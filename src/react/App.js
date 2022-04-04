@@ -7,6 +7,7 @@ import Profile from "./veiws/profile";
 import Main from "./veiws/layouts/main";
 import NotFound from "./veiws/notFound";
 import Chat from "./veiws/chat";
+import ChatDef from "./veiws/chatDef";
 
 const theme = createTheme({
     palette: {
@@ -24,6 +25,7 @@ function App() {
                     <Route path='/' element={<Main />}>
                         <Route path='/' element={<Chats />}>
                             <Route path='/:id' element={<Chat />} />
+                            <Route index element={<ChatDef />} />
                         </Route>
                         <Route path='/profile' element={<Profile />} />
                         <Route path='*' element={<NotFound />} />

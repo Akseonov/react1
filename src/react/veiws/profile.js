@@ -1,9 +1,11 @@
 import React, {useEffect} from "react";
 import Checkbox from '@mui/material/Checkbox';
 import { useDispatch, useSelector } from "react-redux";
+import { shallowEqual } from "react-redux";
+import { getIsChecked } from "../../store/reducers/profileReducer/selectors";
 
 const Profile = () => {
-    const check = useSelector( state => state.isChecked );
+    const check = useSelector( getIsChecked, shallowEqual );
     const dispatch = useDispatch();
 
     useEffect( () => {
@@ -16,10 +18,12 @@ const Profile = () => {
 
     return (
         <>
-            <h1>Профиль</h1>
-            <Checkbox
-                checked={ check }
-                onChange={ (event) => changeCheckbox(event) } />
+            <div className="container">
+                <h1>Профиль</h1>
+                <Checkbox
+                    checked={ check }
+                    onChange={ (event) => changeCheckbox(event) } />
+            </div>
         </>
     );
 };
