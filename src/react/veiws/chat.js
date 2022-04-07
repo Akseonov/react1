@@ -3,17 +3,16 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import { getChat } from "../../store/reducers/chatsReducer/selectors";
+import { useDispatch, useSelector } from "react-redux";
+import { getChatList } from "../../store/reducers/chatsReducer/selectors";
 
 const Chat = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
-    const chat = useSelector( getChat(id), shallowEqual );
-    console.log(chat);
-    const messageList = chat.messages;
     const [element] = useState(React.createRef());
-    console.log(messageList);
+    const chatList = useSelector( getChatList );
+    const chat = chatList.filter( chat => chat.id === +id )[ 0 ];
+    const messageList = chat.messages;
 
     function addMessage( message ) {
         return dispatch( { type: 'addMessage', payload: message });
@@ -27,22 +26,13 @@ const Chat = () => {
 
     function handleSubmit(event) {
         event.preventDefault();
-        // const target = event.target;
-        // const author = target.author.value;
-        // const text = target.text.value;
         const formData = new FormData(event.target);
 
         addMessage( {
-            chatId: id,
+            chatId: +id,
             author: formData.get('author'),
             text: formData.get('text'),
         } )
-        //
-        // setMessageList(prev => [...prev, {
-        //     id: giveLastId(prev),
-        //     author: author,
-        //     text: text,
-        // }]);
     }
 
     function giveLastId(array) {
@@ -54,20 +44,16 @@ const Chat = () => {
             botAnswer(messageList);
             focusTextField(element.current);
         }, 1500 );
-    }, [chat] );
+    }, [messageList] );
 
     function botAnswer() {
         const lastAuthor = messageList[messageList.length - 1];
         if (lastAuthor && lastAuthor.author) {
             addMessage( {
-                chatId: id,
-                author: 'Служебное сообщение',
+                chatId: +id,
+                author: false,
                 text: `Сообщение автора ${lastAuthor.author} отправлено`,
-            } )
-            // setMessageList(prev => [...prev, {
-            //     id: giveLastId(prev),
-            //     text: `Сообщение автора ${lastAuthor.author} отправлено`,
-            // }]);
+            } );
         }
     }
 

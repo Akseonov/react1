@@ -23,7 +23,7 @@ export default function chatsReducer( state = initialState, action ) {
         case 'addChat':
             return {
                 ...state,
-                chats: [...state.chatList, {
+                chatList: [...state.chatList, {
                     id: state.chatList[state.chatList.length - 1].id + 1,
                     title: action.payload,
                     messages: [],
@@ -32,22 +32,20 @@ export default function chatsReducer( state = initialState, action ) {
         case 'deleteChat':
             return {
                 ...state,
-                chats: state.chatList.filter( chat => chat.id !== action.payload )
+                chatList: state.chatList.filter( chat => chat.id !== action.payload )
             }
         case 'addMessage':
-            // const chatIndex = state.chatList.indexOf(+action.payload.chatId);
-            // console.log(chatIndex, +action.payload.chatId);
-            const arr = state.chatList
+            const arr = [...state.chatList];
             const chat = arr.find( chat => chat.id === +action.payload.chatId );
             chat.messages = [...chat.messages, {
                 id: chat.messages.length ? chat.messages[chat.messages.length - 1].id + 1 : 0,
                 author: action.payload.author ? action.payload.author : '',
                 text: action.payload.text,
-            } ]
-            console.log(chat);
+            } ];
+            console.log( state.chatList );
             return {
                 ...state,
-                chats: arr,
+                chatList: arr,
             }
         default:
             return state;
