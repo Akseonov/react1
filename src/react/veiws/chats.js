@@ -1,37 +1,16 @@
-import React, {useState} from "react";
+import React from "react";
 import List from "@mui/material/List";
 import ListSubheader from "@mui/material/ListSubheader";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import { NavLink, Outlet } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import Typography from "@mui/material/Typography";
 import Box from '@mui/material/Box';
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import IconButton from '@mui/material/IconButton';
-import { shallowEqual } from "react-redux";
-import { getChatList } from "../../store/reducers/chatsReducer/selectors";
 
-const Chats = () => {
-    const dispatch = useDispatch();
-    const chatList = useSelector( getChatList, shallowEqual );
-    const [name, setName] = useState('');
-
-    function handleInputChange(event) {
-        setName(event.target.value);
-    }
-
-    const addNewChat = event => {
-        event.preventDefault();
-        const formData = new FormData(event.target);
-        return dispatch( { type: 'addChat', payload: formData.get('name') });
-    }
-    const deleteChat = ( event, id ) => {
-        event.preventDefault();
-        return dispatch( { type: 'deleteChat', payload: id });
-    }
-
+const Chats = ( { chatList, deleteChat, addNewChat, handleInputChange, name } ) => {
     return (
         <>
             <div style={{

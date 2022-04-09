@@ -2,12 +2,12 @@ import React, {useEffect, useState} from "react";
 import { red } from '@mui/material/colors';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Routes, Route } from 'react-router-dom';
-import Chats from "./veiws/chats";
-import Profile from "./veiws/profile";
+import ProfileContainer from "./veiws/profileContainer";
 import Main from "./veiws/layouts/main";
 import NotFound from "./veiws/notFound";
-import Chat from "./veiws/chat";
+import ChatContainer from "./veiws/chatContainer";
 import ChatDef from "./veiws/chatDef";
+import ChatsContainer from "./veiws/chatsContainer";
 
 const theme = createTheme({
     palette: {
@@ -23,11 +23,11 @@ function App() {
             <div className="App">
                 <Routes>
                     <Route path='/' element={<Main />}>
-                        <Route path='/' element={<Chats />}>
-                            <Route path='/:id' element={<Chat />} />
+                        <Route path='/' element={<ChatsContainer />}>
+                            <Route path='/:id' element={<ChatContainer />} />
                             <Route index element={<ChatDef />} />
                         </Route>
-                        <Route path='/profile' element={<Profile />} />
+                        <Route path='/profile' element={<ProfileContainer />} />
                         <Route path='*' element={<NotFound />} />
                     </Route>
                 </Routes>

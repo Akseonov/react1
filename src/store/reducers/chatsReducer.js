@@ -18,7 +18,7 @@ const initialState = {
     ]
 }
 
-export default function chatsReducer( state = initialState, action ) {
+export function chatsReducer( state = initialState, action ) {
     switch (action.type) {
         case 'addChat':
             return {
@@ -42,7 +42,6 @@ export default function chatsReducer( state = initialState, action ) {
                 author: action.payload.author ? action.payload.author : '',
                 text: action.payload.text,
             } ];
-            console.log( state.chatList );
             return {
                 ...state,
                 chatList: arr,
@@ -51,3 +50,20 @@ export default function chatsReducer( state = initialState, action ) {
             return state;
     }
 }
+
+export const botMessage = store => next => action => {
+    if ( action.type === 'addMessage' ) {
+        if ( action.payload.author ) {
+            setTimeout( () => {
+                store.dispatch( { type: 'addMessage', payload: {
+                        chatId: action.payload.chatId,
+                        author: false,
+                        text: `Сообщение автора ${action.payload.author} отправлено`,
+                    } } );
+            }, 1500 )
+        }
+    }
+
+    return next( action );
+}
+
