@@ -1,13 +1,14 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import { red } from '@mui/material/colors';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Routes, Route } from 'react-router-dom';
-import ProfileContainer from "./veiws/profileContainer";
+import ProfileContainer from "./veiws/prifile/profileContainer";
 import Main from "./veiws/layouts/main";
 import NotFound from "./veiws/notFound";
-import ChatContainer from "./veiws/chatContainer";
-import ChatDef from "./veiws/chatDef";
-import ChatsContainer from "./veiws/chatsContainer";
+import ChatContainer from "./veiws/chat/chatContainer";
+import ChatDef from "./veiws/chat/chatDef";
+import ChatsContainer from "./veiws/chats/chatsContainer";
+import TodosContainer from "./veiws/todos/todosContainer";
 
 const theme = createTheme({
     palette: {
@@ -28,6 +29,7 @@ function App() {
                             <Route index element={<ChatDef />} />
                         </Route>
                         <Route path='/profile' element={<ProfileContainer />} />
+                        <Route path='/todos' element={<TodosContainer />} />
                         <Route path='*' element={<NotFound />} />
                     </Route>
                 </Routes>

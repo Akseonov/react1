@@ -1,8 +1,7 @@
 import React, {useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { shallowEqual } from "react-redux";
-import { getChatList } from "../../store/reducers/chatsReducer/selectors";
+import { getChatList } from "../../../store/reducers/chatsReducer/selectors";
 import Chats from "./chats";
 
 const ChatsContainer = () => {

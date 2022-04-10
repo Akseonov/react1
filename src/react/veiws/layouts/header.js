@@ -18,6 +18,9 @@ const Header = () => {
                     <MenuItem component={NavLink} to={ '/profile' }>
                         <Typography textAlign="center">Профиль</Typography>
                     </MenuItem>
+                    <MenuItem component={NavLink} to={ '/todos' }>
+                        <Typography textAlign="center">Задачи</Typography>
+                    </MenuItem>
                 </Toolbar>
             </Container>
         </AppBar>

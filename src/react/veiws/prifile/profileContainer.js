@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
-import { getIsChecked } from "../../store/reducers/profileReducer/selectors";
+import { getIsChecked } from "../../../store/reducers/profileReducer/selectors";
 import Profile from "./profile";
 
 const ProfileContainer = () => {
