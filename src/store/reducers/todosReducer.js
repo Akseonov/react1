@@ -1,3 +1,6 @@
+import { ERROR, GET_TODOS, LOADING } from "../actions/todosActions";
+import { errorAction, getTodosAction, loadingAction } from "../actionCreators/todosAction";
+
 const initialState = {
     todos: [],
     loading: false,
@@ -6,8 +9,7 @@ const initialState = {
 
 export function todosReducer( state = initialState, action ) {
     switch (action.type) {
-        case 'getTodos': {
-            console.log(action.payload);
+        case GET_TODOS: {
             return {
                 ...state,
                 todos: action.payload,
@@ -15,13 +17,13 @@ export function todosReducer( state = initialState, action ) {
                 error: false,
             }
         }
-        case 'loading': {
+        case LOADING: {
             return {
                 ...state,
                 loading: true
             }
         }
-        case 'error': {
+        case ERROR: {
             return {
                 ...state,
                 error: true
@@ -34,20 +36,13 @@ export function todosReducer( state = initialState, action ) {
 
 export const todosThunk = () => {
     return async ( dispatch ) => {
-        dispatch( {
-            type: 'loadingStart',
-        } );
+        dispatch( loadingAction() );
         try {
             const result = await fetch('https://jsonplaceholder.typicode.com/todos?_limit=20');
             const todos = await result.json();
-            dispatch( {
-                type: 'getTodos',
-                payload: todos,
-            } )
+            dispatch( getTodosAction( todos ) )
         } catch (e) {
-            dispatch( {
-                type: 'error',
-            } );
+            dispatch( errorAction() );
         }
     }
 }

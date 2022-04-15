@@ -1,3 +1,5 @@
+import { ADD_MESSAGE, DELETE_CHAT, ADD_CHAT } from "../actions/chatsAction";
+
 const initialState = {
     chatList: [
         {
@@ -20,7 +22,7 @@ const initialState = {
 
 export function chatsReducer( state = initialState, action ) {
     switch (action.type) {
-        case 'addChat':
+        case ADD_CHAT:
             return {
                 ...state,
                 chatList: [...state.chatList, {
@@ -29,12 +31,12 @@ export function chatsReducer( state = initialState, action ) {
                     messages: [],
                 }]
             }
-        case 'deleteChat':
+        case DELETE_CHAT:
             return {
                 ...state,
                 chatList: state.chatList.filter( chat => chat.id !== action.payload )
             }
-        case 'addMessage':
+        case ADD_MESSAGE:
             const arr = [...state.chatList];
             const chat = arr.find( chat => chat.id === +action.payload.chatId );
             chat.messages = [...chat.messages, {
@@ -52,10 +54,10 @@ export function chatsReducer( state = initialState, action ) {
 }
 
 export const botMessage = store => next => action => {
-    if ( action.type === 'addMessage' ) {
+    if ( action.type === ADD_MESSAGE ) {
         if ( action.payload.author ) {
             setTimeout( () => {
-                store.dispatch( { type: 'addMessage', payload: {
+                store.dispatch( { type: ADD_MESSAGE, payload: {
                         chatId: action.payload.chatId,
                         author: false,
                         text: `Сообщение автора ${action.payload.author} отправлено`,

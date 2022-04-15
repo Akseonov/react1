@@ -1,0 +1,1 @@
+export const CHANGE_IS_CHECKED = 'CHANGE_IS_CHECKED';

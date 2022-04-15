@@ -9,15 +9,25 @@ const Chat = ( { title, handleSubmit, element, messageList } ) => {
             <Box component="form" noValidate
                  autoComplete="off" mt={4} display="flex"
                  flexDirection="column" onSubmit={handleSubmit}>
-                <TextField id="name" label="Имя"
-                           variant="outlined" sx={{ mb: 2 }}
-                           name="author" autoFocus
+                <TextField id="name"
+                           label="Имя"
+                           variant="outlined"
+                           sx={{ mb: 2 }}
+                           autoComplete="off"
+                           name="author"
+                           autoFocus
                            inputRef={element} />
-                <TextField id="message" label="Сообщение"
-                           variant="outlined" sx={{ mb: 2 }}
+                <TextField id="message"
+                           label="Сообщение"
+                           variant="outlined"
+                           sx={{ mb: 2 }}
+                           autoComplete="off"
                            name="text" />
-                <Button variant="outlined" color="primary"
-                        size="small" type="submit" sx={{ mb: 4 }}>Отправить</Button>
+                <Button variant="outlined"
+                        color="primary"
+                        size="small"
+                        type="submit"
+                        sx={{ mb: 4 }}>Отправить</Button>
             </Box>
             <div className="message-list">
                 {messageList.map( message => <div className="message-list__item" key={message.id}>

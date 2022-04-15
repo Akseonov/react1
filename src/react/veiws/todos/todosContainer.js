@@ -13,8 +13,6 @@ const TodosContainer = () => {
     const todos = useSelector( todosSelector );
     const loading = useSelector( loadingSelector );
     const error = useSelector( errorSelector );
-    console.log(todos);
-    console.log(loading);
 
     const onLoadTodos = () => {
         dispatch( todosThunk() );
@@ -22,14 +20,14 @@ const TodosContainer = () => {
 
     useEffect( () => {
         dispatch( todosThunk() );
-    }, [] );
+    }, [ dispatch ] );
 
     return (
         <Todos
-            todos={todos}
-            loading={loading}
-            onLoadTodos={onLoadTodos}
-            error={error}
+            todos={ todos }
+            loading={ loading }
+            onLoadTodos={ onLoadTodos }
+            error={ error }
         />
     );
 }

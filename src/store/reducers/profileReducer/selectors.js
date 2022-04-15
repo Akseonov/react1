@@ -1,3 +1,1 @@
-export function getIsChecked(state) {
-    return state.profile.isChecked;
-}
+export const getIsChecked = state => state.profile.isChecked;
