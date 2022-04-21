@@ -5,17 +5,21 @@ import { getChatList } from "../../../store/reducers/chatsReducer/selectors";
 import Chat from "./chat";
 import { addMessageAction } from "../../../store/actionCreators/chatsAction";
 
-const ChatContainer = () => {
+export const addMessage = ( dispatch, message ) => {
+    return dispatch( addMessageAction( message ) );
+}
+
+export const ChatContainer = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
-    const [element] = useState( React.createRef() );
+    const [ element ] = useState( React.createRef() );
     const chatList = useSelector( getChatList );
     const chat = chatList.filter( chat => chat.id === +id )[ 0 ];
     const messageList = chat.messages;
 
-    function addMessage( message ) {
-        return dispatch( addMessageAction( message ) );
-    }
+    // function addMessage( message ) {
+    //     return dispatch( addMessageAction( message ) );
+    // }
 
     function focusTextField( input ) {
         if ( input ) {
@@ -27,7 +31,7 @@ const ChatContainer = () => {
         event.preventDefault();
         const formData = new FormData( event.target );
 
-        addMessage( {
+        addMessage( dispatch, {
             chatId: +id,
             author: formData.get( 'author' ),
             text: formData.get( 'text' ),
@@ -49,5 +53,3 @@ const ChatContainer = () => {
         />
     );
 };
-
-export default ChatContainer;

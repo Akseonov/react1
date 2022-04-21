@@ -15,8 +15,6 @@ import {
 	registerSuccess
 } from "../actionCreators/authAction";
 import { auth } from '../../services/firebase';
-import todosContainer from "../../react/veiws/todos/todosContainer";
-import { errorAction } from "../actionCreators/todosAction";
 
 const initialState = {
 	loading: false,

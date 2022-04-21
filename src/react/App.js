@@ -5,7 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import ProfileContainer from "./veiws/prifile/profileContainer";
 import Main from "./veiws/layouts/main";
 import NotFound from "./veiws/notFound";
-import ChatContainer from "./veiws/chat/chatContainer";
+import { ChatContainer } from "./veiws/chat/chatContainer";
 import ChatDef from "./veiws/chat/chatDef";
 import ChatsContainer from "./veiws/chats/chatsContainer";
 import TodosContainer from "./veiws/todos/todosContainer";
@@ -34,7 +34,7 @@ function App() {
                             <>
                             <Route path='/' element={<Main />}>
                                 <Route path='*' element={<NotFound />} />
-                                <Route path='/registration' element={<RegisterContainer />} />
+                                <Route path='/' element={<RegisterContainer />} />
                                 <Route path='/login' element={<LoginContainer />} />
                             </Route>
                             </>

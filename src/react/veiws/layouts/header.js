@@ -31,7 +31,7 @@ const Header = () => {
             <AppBar position="static">
                 <Container maxWidth="xl" sx={{ display: 'flex', justifyContent: 'center' }}>
                     <Toolbar disableGutters>
-                        <MenuItem component={NavLink} to={ '/registration' }>
+                        <MenuItem component={NavLink} to={ '/' }>
                             <Typography textAlign="center">Регистрация</Typography>
                         </MenuItem>
                         <MenuItem component={NavLink} to={ '/login' }>

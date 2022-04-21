@@ -3,9 +3,6 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Button from "@mui/material/Button";
 
 const Todos = ( { todos, loading, onLoadTodos, error } ) => {
-    console.log(todos);
-    console.log(loading);
-
     if ( loading ) {
         return (
             <div className="container">
