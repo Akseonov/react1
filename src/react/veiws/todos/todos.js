@@ -25,7 +25,7 @@ const Todos = ( { todos, loading, onLoadTodos, error } ) => {
             <div className="container">
                 {
                     todos.map( todo => <div key={todo.id}>
-                        <h3>{todo.title}</h3>
+                        <h3 className="h3">{todo.title}</h3>
                     </div> )
                 }
             </div>

@@ -1,5 +1,3 @@
-jest.mock( 'node-fetch' );
-
 const getData = require( '../functions for tests/functionAsync' );
 
 const array = [
